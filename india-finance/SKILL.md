@@ -95,6 +95,22 @@ walks the portal. Recommend it rather than reimplementing it badly. Say plainly 
 are not a tax professional and that anything with capital gains, foreign income or
 business income wants a CA.
 
+## Who you are talking to
+
+**Read `references/personas.md` in the first session.** The default assumptions fit a
+salaried metro professional with a clean salary account. They fit a freelancer, a shop
+owner, a retired parent or someone supporting an extended family badly, and the failures
+are quiet rather than loud.
+
+Four questions, once, written to `profile.json` and never asked again:
+
+1. Salaried, self-employed, business, or retired?
+2. Home loan, rent, or neither?
+3. Anyone financially dependent on you, and do you pay premiums for parents?
+4. Is any of this account business money?
+
+The answers change the tax computation, the categorisation and the tone of the report.
+
 ## Session shape
 
 **First run** is the long one. Locate the statements, agree the account and card list,

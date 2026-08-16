@@ -28,17 +28,31 @@ nothing else is.
 
 ## Old regime
 
-| Slab | Rate |
-|---|---|
-| up to ₹2,50,000 | nil |
-| ₹2,50,001 – ₹5,00,000 | 5% |
-| ₹5,00,001 – ₹10,00,000 | 20% |
-| above ₹10,00,000 | 30% |
+Basic exemption varies with age. The new regime does not.
 
-Standard deduction ₹50,000. Rebate under 87A up to ₹5,00,000 taxable income.
+| Slab | Under 60 | 60 and above | 80 and above |
+|---|---|---|---|
+| exemption limit | ₹2,50,000 | ₹3,00,000 | ₹5,00,000 |
+| next band to ₹5,00,000 | 5% | 5% | nil |
+| ₹5,00,001 – ₹10,00,000 | 20% | 20% | 20% |
+| above ₹10,00,000 | 30% | 30% | 30% |
 
-Deductions available: 80C (₹1.5L), 80D (health premium), 80CCD(1B) (NPS, ₹50k),
-24(b) (home loan interest, ₹2L self-occupied), HRA, LTA, 80G, 80TTA/80TTB, 80E.
+**Ask their age band before computing the old regime.** Getting this wrong overstates a
+retired person's tax materially, and they are the group least able to absorb the error.
+
+Standard deduction ₹50,000, and it applies to pension as well as salary. Rebate under
+87A up to ₹5,00,000 taxable income.
+
+Deductions available: 80C (₹1.5L), 80D, 80CCD(1B) (NPS, ₹50k), 24(b) (home loan
+interest, ₹2L self-occupied), HRA, LTA, 80G, 80TTA/80TTB, 80E.
+
+**80D has two limits, not one.** The taxpayer's own premium, and a separate additional
+limit for premiums paid for parents, higher again when those parents are senior citizens.
+People pay their parents' premiums and routinely fail to claim them. Ask.
+
+**80TTA versus 80TTB.** Under 60, up to ₹10,000 of savings-account interest. At 60 and
+above, 80TTB replaces it with up to ₹50,000 covering FD interest too. Retired people hold
+large deposits, so this is not a rounding error.
 
 ## Both regimes
 
