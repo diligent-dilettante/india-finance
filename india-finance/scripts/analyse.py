@@ -78,12 +78,19 @@ def load(path):
 
 
 def monthly_spine(rows):
-    m = defaultdict(lambda: {"income": 0.0, "spend": 0.0, "internal": 0.0})
+    """Spend excludes the `financial` group. A SIP, a tax payment or a refundable
+    deposit is money leaving the account, but it is not consumption, and folding
+    it into spend understates the savings rate by exactly the amount being saved.
+    Financial outflow is reported on its own line instead."""
+    m = defaultdict(lambda: {"income": 0.0, "spend": 0.0, "internal": 0.0,
+                             "financial": 0.0})
     for r in rows:
         if r["group"] == "internal":
             m[r["month"]]["internal"] += abs(r["amount"])
         elif r["amount"] > 0:
             m[r["month"]]["income"] += r["amount"]
+        elif r["group"] == "financial":
+            m[r["month"]]["financial"] += -r["amount"]
         else:
             m[r["month"]]["spend"] += -r["amount"]
     out = []
@@ -92,7 +99,7 @@ def monthly_spine(rows):
         saved = v["income"] - v["spend"]
         out.append({
             "month": month, "income": v["income"], "spend": v["spend"],
-            "saved": saved,
+            "financial": v["financial"], "saved": saved,
             "savings_rate": (saved / v["income"] * 100) if v["income"] else None,
             "internal": v["internal"],
         })
@@ -227,10 +234,12 @@ def render(rep):
         L.append("   Single month: no trend or movement analysis possible.")
     L.append("")
     L.append("MONTHLY")
-    L.append(f"  {'month':<9} {'income':>13} {'spend':>13} {'saved':>13} {'rate':>7}")
+    L.append(f"  {'month':<9} {'income':>13} {'spend':>13} {'invested':>13} "
+             f"{'saved':>13} {'rate':>7}")
     for m in rep["monthly"]:
         rate = f"{m['savings_rate']:.0f}%" if m["savings_rate"] is not None else "n/a"
         L.append(f"  {m['month']:<9} {rupees(m['income']):>13} {rupees(m['spend']):>13} "
+                 f"{rupees(m.get('financial', 0)):>13} "
                  f"{rupees(m['saved']):>13} {rate:>7}")
 
     mv = [m for m in rep["movement"] if abs(m["delta"]) >= 500][:8]

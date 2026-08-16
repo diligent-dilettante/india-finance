@@ -1,8 +1,16 @@
 __pycache__/
 *.pyc
+
+# Never commit anyone's actual financial data. These are the filenames the skill
+# writes into a user's working folder, plus the statement formats it reads.
 transactions.csv
+transactions_raw.csv
 categories.json
 accounts.json
+profile.json
 reports/
 *.xlsx
+*.xls
 *.pdf
+*.csv
+*.html

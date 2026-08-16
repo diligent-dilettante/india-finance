@@ -74,6 +74,49 @@ display string.
 BharatPe or a Razorpay QR shows the aggregator, not the shop. These need either a
 user-supplied mapping or an honest "unknown merchant" bucket. Do not invent a merchant.
 
+**The last segment is the counterparty's bank, not the merchant.** A narration ends
+`/ICICI Bank`, `/YES BANK LIMITED YBS`, `/AIRTEL PAYMENTS BANK`. Match rules against the
+full string and the bank name swallows the merchant: every Uber and Zepto routed through
+Airtel Payments Bank lands in a "phone and internet" rule. Strip the trailing bank
+segment before any categorisation rule sees the string.
+
+## UPI Lite, the newest blind spot
+
+UPI Lite is an on-device wallet. It is topped up from the account in fixed amounts,
+usually ₹1,000, and small payments settle against that balance **without ever reaching
+the bank statement**. Only the top-up appears.
+
+This is not a niche feature. Where it is switched on with auto top-up, a large share of
+day-to-day spending disappears from the ledger, and it takes cabs, food delivery and
+quick commerce with it — the exact categories most people want measured.
+
+**How to spot it.** A run of identical round-number debits, often daily, to a payee
+string that matches the account holder's own name or VPA. The giveaway is the corroborating
+absence: merchants that appeared every month for a year stop appearing entirely, and
+transaction counts on them collapse while the top-ups begin.
+
+**How to treat it.** Like a cash withdrawal, not like a transfer. The money is spent;
+only the detail is missing. Tagging it internal deletes real consumption from the totals
+and produces a fake improvement in the savings rate. Give it its own category, count it
+as spend, and state the size of the hole.
+
+**Say so before reporting any trend.** A category that "fell" the month UPI Lite was
+switched on did not fall. Check whether a payment rail changed before attributing a
+movement to behaviour — the same warning applies to a new card, a wallet, or a bill moving
+to a spouse's account.
+
+## Many statements, one filename
+
+Bank portals routinely export every statement under the same name, leaving the browser to
+disambiguate: `CC_Statement_2026_08_16.xlsx`, `… (1).xlsx`, `… (2).xlsx`. The suffix
+reflects download order, which is usually **reverse chronological**, and a single download
+session can mix two different cards.
+
+Never infer the period or the account from the filename. Open each file, read the card or
+account identifier and the statement month out of the header, and build the register from
+that. Then reconcile: each statement's opening balance should equal the previous
+statement's closing figure, which both proves the ordering and catches a missing month.
+
 ## Other narration prefixes
 
 | Prefix | Means |

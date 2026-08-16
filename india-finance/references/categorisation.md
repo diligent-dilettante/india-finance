@@ -40,6 +40,13 @@ register to identify.
 cannot see what the cash bought. If cash withdrawal is a large share of outflow, say so
 plainly — it is a visibility hole in the analysis, not a category of spending.
 
+**What is not internal: wallet top-ups.** A UPI Lite top-up, or a load onto Paytm,
+Amazon Pay or any other wallet, looks like a transfer to yourself and is not one. The
+money is consumed; only the itemisation is missing. Tag it `unknown/wallet` — outside
+`internal`, so it counts as spend — and report the size of the hole. Classifying it
+internal removes real consumption from the totals and manufactures a savings rate that
+was never earned. See the UPI Lite section in `indian-statements.md` for detection.
+
 ## India-specific rules
 
 **Salary is not always obvious.** Employers use their own narration strings. Anchor on
@@ -107,6 +114,19 @@ answer and the totals stay true.
 
 Write it after every session where something new was learned. It is what makes the second
 run fast, and it is the single most valuable artifact this skill produces.
+
+## Run the pipeline in one order, always
+
+**parse from the original statements → categorise → redact.** Rebuild from source on
+every run rather than editing the ledger in place.
+
+Redaction has to come last. The merchant key is derived from the narration, so masking an
+account number inside it changes the key — and every mapping in `categories.json` silently
+stops matching. Nothing errors. The run simply reports a pile of freshly uncategorised
+transactions that were categorised yesterday.
+
+If a payee name is itself an account number, mask it where the key is built, so the stored
+mapping and the ledger can never disagree about what the key is.
 
 ## When they disagree with a category
 

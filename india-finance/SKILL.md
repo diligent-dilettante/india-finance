@@ -131,11 +131,18 @@ In their working folder, not here:
 |---|---|
 | `transactions.csv` | the normalised ledger, every parsed row |
 | `categories.json` | learned merchant-to-category mappings |
+| `profile.json` | the four persona answers, asked once and never again |
 | `accounts.json` | the account and card register, last-4 only, never full numbers |
 | `reports/` | dated analysis output |
 
 Never write a full account or card number to any file. Last four digits identify an
-account for a human perfectly well.
+account for a human perfectly well. Statement filenames sometimes *are* the account
+number, so rename them in any register you write.
+
+**Rebuild in one order every run: parse from the original statements, categorise, then
+redact.** Redacting before categorising changes the merchant keys and silently detaches
+every learned mapping, which fails as a pile of transactions that were categorised
+yesterday and are not today.
 
 ## Assets, portfolio and credit
 

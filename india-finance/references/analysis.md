@@ -22,6 +22,19 @@ should be separated from one-off spend before any trend is read.
 cost. People consistently underestimate this. Show the annual figure, since ₹499 a month
 reads as nothing and ₹5,988 a year does not.
 
+**Only annualise what recurs.** Require a charge to land in at least three distinct
+months before multiplying it out, and use the median month rather than the mean. Otherwise
+a one-off annual invoice paid in a single month becomes twelve times itself and the total
+is fiction. A ₹6,000 licence renewal charged once turns into ₹72,000 of imaginary
+subscription cost, which is larger than most people's real subscription bill. List
+the one-offs separately and say plainly that they are not subscriptions — a subscription
+audit that inflates the number is worse than none, because the one real cancellation gets
+lost among six imaginary ones.
+
+Report the **first and last charge date** for each. A subscription whose last charge was
+five months ago has already been cancelled or has lapsed, and belongs in the report as
+history rather than as a saving still available.
+
 **Card behaviour** — whether statements are cleared in full, and any interest or late fee
 charged. Revolving credit at Indian card rates is the single most expensive thing most
 people do with money, and it hides inside "card payment" as a category.
@@ -44,6 +57,18 @@ is usable. "Your food spending has increased" is not.
 **Separate the structural from the seasonal.** Diwali, weddings and travel produce spikes
 that are not trends. Compare to the same period last year where the window allows;
 otherwise mark it as seasonal and exclude it from the trend read.
+
+**Check the rail before you call a movement behaviour.** A category that drops to zero
+usually means the payments moved, not that they stopped: UPI Lite switched on, a new card,
+a bill taken over by a spouse, a merchant changing its settlement route. The tell is
+abruptness — genuine behaviour change is gradual, a rail change is a cliff, and a category
+that ran every month for a year does not go to exactly zero on its own. Say which one it
+was, and never publish a "biggest movers" list without checking the cliffs in it.
+
+**Strip the one-offs before quoting a run-rate.** A wedding, a house move, a deposit or a
+single foreign trip can dominate a year and tell you nothing about next month. Report the
+headline honestly, then report it again with identified one-offs removed, and label which
+is which. The second number is the one that predicts anything.
 
 **Say when the data cannot answer.** Cash-heavy months, an unparsed statement, a missing
 card — name the gap and its size rather than reporting around it.
