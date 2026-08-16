@@ -25,7 +25,7 @@ annualise silently.
 ## 2. UDIN tells you the year the audit was signed
 
 Every audited financial statement in India carries a UDIN. The first two digits are the year of
-signing: `24XXXXXXBKHTYK7606` was signed in 2024, so it is the FY2023-24 audit.
+signing: `24123456ABCDEF7890` was signed in 2024, so it is the FY2023-24 audit.
 
 This is the fastest provenance check available, and it settles arguments about which year a loose
 PDF belongs to. An audit report with no UDIN, or a blank UDIN field, is a provisional or unaudited
@@ -35,8 +35,8 @@ document however it is labelled.
 
 ## 3. The CIN encodes incorporation year and state, and beats any other claim
 
-`U26914AP1987PTC0XXXXX` decomposes as: `U` unlisted · `26914` industry code · `AP` Andhra Pradesh ·
-**`1987` year of incorporation** · `PTC` private limited · a registration number.
+`U28999MH2011PTC123456` decomposes as: `U` unlisted · `28999` industry code · `MH` Maharashtra ·
+**`2011` year of incorporation** · `PTC` private limited · a registration number.
 
 When a company profile, a website or a summary claims a different founding year, the CIN wins. The
 other figure is often the year the current works commenced or the year of a reconstitution.
