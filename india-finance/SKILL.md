@@ -1,6 +1,6 @@
 ---
 name: india-finance
-description: Personal finance analysis for one person in India. Reads bank and credit card statements in PDF, CSV or Excel, categorises transactions, reports spending and income trends, and gives concrete recommendations. Covers old versus new tax regime comparison for planning. Use when someone wants to understand where their money goes, track net worth or savings rate, review spending across accounts and cards, plan for tax, or asks questions like "where did my money go last quarter", "am I saving enough", "which regime should I pick", "what changed in my spending". Everything stays on the local machine.
+description: Personal finance for one person in India. Reads bank and credit card statements in PDF, CSV or Excel, categorises transactions, reports spending and income trends with costed recommendations, maps assets including property and gold, computes allocation, concentration and liquidity, funds goals, lays out what can be borrowed against illiquid holdings, and compares the old and new tax regimes. Use when someone wants to know where their money goes, whether they are saving enough, what they are actually worth, how concentrated they are, which tax regime to pick, or what a loan against property or securities would cost. Individual scope only, not business finance. All arithmetic runs in Python and everything stays on the local machine.
 ---
 
 # India finance
@@ -33,7 +33,7 @@ Formats you will meet, in rough order of pain:
   Say so rather than guessing at numbers you cannot read.
 
 Read `references/indian-statements.md` before parsing anything. It covers the column
-conventions, the date formats, and the specific traps. Credit card statements that show
+conventions, the date formats, and the specific traps — credit card statements that show
 credits as positive, UPI descriptions that bury the counterparty, and the fact that most
 Indian statements have separate debit and credit columns rather than a signed amount.
 
@@ -43,7 +43,7 @@ useless because it looks complete.
 
 ## Categorising
 
-`references/categorisation.md` has the taxonomy and the India-specific rules: UPI
+`references/categorisation.md` has the taxonomy and the India-specific rules — UPI
 handles that hide the merchant, salary credits versus reimbursements, credit card
 payments that must not double-count against the card spend they settle.
 
@@ -83,10 +83,10 @@ and stop. You are not their conscience.
 ## Tax
 
 `references/tax-regimes.md` covers the old and new regime comparison. **Verify the slabs
-against the current assessment year before computing anything.** The file is dated, tax
+against the current assessment year before computing anything** — the file is dated, tax
 law changes every Budget, and a stale slab produces a confidently wrong number.
 
-For *planning*, which regime and what a deduction is worth and roughly what is owed, compute
+For *planning* — which regime, what a deduction is worth, roughly what is owed — compute
 it here and show the working.
 
 For *filing an actual ITR*, hand off. `shivprime94/file-itr` is MIT, well maintained and
@@ -121,10 +121,32 @@ In their working folder, not here:
 Never write a full account or card number to any file. Last four digits identify an
 account for a human perfectly well.
 
-## What this is not
+## Assets, portfolio and credit
 
-Not a budgeting app, not a net-worth dashboard, not investment advice. It reads what
-happened and tells them what it means. If they want portfolio allocation or a FIRE
-projection, that is a different conversation and mostly a different skill.
+Statements show flow. Once the flow is understood, the stock usually matters more.
+
+Read `references/assets-and-credit.md` for the asset register, allocation and
+concentration, goal funding, and what can be borrowed against illiquid holdings. It
+covers the two things Indian households most often get wrong: real estate carrying three
+different values that must not be confused, and personal guarantees behind a family
+business that convert a business failure into a personal one.
+
+**You do not recommend securities.** No buy calls, no fund picks, no market views. What
+you do is arithmetic and structure: what the portfolio actually is, where it is
+concentrated, how liquid it is, what a goal requires, and what leverage costs. For
+security selection, route to a SEBI-registered investment adviser, say it once, and move
+on.
+
+## Scope
+
+**One person's money.** Their accounts, their cards, their assets, their goals.
+
+Where a family business exists, it appears only as the individual's exposure to it: a
+stake with a value, an income stream, and any personal guarantee sitting behind its debt.
+**Business finance itself is out of scope** — working capital, receivables, unit
+economics, company books. That is a separate skill for another day; do not drift into it.
+
+Not a budgeting app and not a dashboard. It reads what happened, sizes what they own, and
+tells them what it means.
 
 Read `references/analysis.md` for the specific computations and how to frame the output.
