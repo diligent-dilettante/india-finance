@@ -4,6 +4,18 @@
 
 MIT licensed. Works in Claude Code, Claude Desktop and Claude.ai.
 
+
+## Two skills in this repo
+
+| Skill | Scope |
+|---|---|
+| [`india-finance/`](india-finance/) | **One person's own money.** Bank and card statements, spending and income trends, assets, allocation and liquidity, goals, borrowing against holdings, old vs new tax regime. |
+| [`india-finance-business/`](india-finance-business/) | **An Indian private company or MSME.** Audited statements, Tally trial balances, Form 3CD and scanned PDFs into a provenance-tagged series; working capital, capital productivity, MSME/Udyam status, related-party and inter-company funding. |
+
+They are separate skills with separate scopes — install either or both. Neither reads the other's
+data. Every figure in both comes from Python rather than from the model.
+
+
 ## What it does
 
 Point it at your statements. PDF, CSV or Excel, bank accounts and credit cards, as many as you have.
