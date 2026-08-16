@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+transactions.csv
+categories.json
+accounts.json
+reports/
+*.xlsx
+*.pdf
