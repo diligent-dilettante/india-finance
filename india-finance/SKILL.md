@@ -33,7 +33,7 @@ Formats you will meet, in rough order of pain:
   Say so rather than guessing at numbers you cannot read.
 
 Read `references/indian-statements.md` before parsing anything. It covers the column
-conventions, the date formats, and the specific traps — credit card statements that show
+conventions, the date formats, and the specific traps. Credit card statements that show
 credits as positive, UPI descriptions that bury the counterparty, and the fact that most
 Indian statements have separate debit and credit columns rather than a signed amount.
 
@@ -43,7 +43,7 @@ useless because it looks complete.
 
 ## Categorising
 
-`references/categorisation.md` has the taxonomy and the India-specific rules — UPI
+`references/categorisation.md` has the taxonomy and the India-specific rules: UPI
 handles that hide the merchant, salary credits versus reimbursements, credit card
 payments that must not double-count against the card spend they settle.
 
@@ -83,10 +83,10 @@ and stop. You are not their conscience.
 ## Tax
 
 `references/tax-regimes.md` covers the old and new regime comparison. **Verify the slabs
-against the current assessment year before computing anything** — the file is dated, tax
+against the current assessment year before computing anything.** The file is dated, tax
 law changes every Budget, and a stale slab produces a confidently wrong number.
 
-For *planning* — which regime, what a deduction is worth, roughly what is owed — compute
+For *planning*, which regime and what a deduction is worth and roughly what is owed, compute
 it here and show the working.
 
 For *filing an actual ITR*, hand off. `shivprime94/file-itr` is MIT, well maintained and
