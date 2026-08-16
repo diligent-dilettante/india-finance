@@ -48,13 +48,21 @@ def rupees(n):
 
 
 def load(path):
+    """Returns (rows, stats). stats carries the parse gap into the report,
+    because a dropped row that only warns on stderr is a dropped row nobody
+    sees when output is piped."""
     rows = []
+    stats = {"seen": 0, "skipped": 0, "reasons": []}
     with open(path, newline="", encoding="utf-8-sig") as f:
         for i, r in enumerate(csv.DictReader(f), start=2):
+            stats["seen"] += 1
             try:
                 d = datetime.strptime(r["date"].strip(), "%Y-%m-%d").date()
                 amt = float(str(r["amount"]).replace(",", "").replace("₹", "").strip())
             except (ValueError, KeyError, AttributeError) as e:
+                stats["skipped"] += 1
+                if len(stats["reasons"]) < 5:
+                    stats["reasons"].append(f"row {i}: {e}")
                 print(f"  ! row {i} unparseable, skipped: {e}", file=sys.stderr)
                 continue
             cat = (r.get("category") or "unknown/unknown").strip().lower()
@@ -66,7 +74,7 @@ def load(path):
                 "category": cat, "group": group,
                 "account": (r.get("account") or "").strip(),
             })
-    return rows
+    return rows, stats
 
 
 def monthly_spine(rows):
@@ -186,7 +194,7 @@ def cash_visibility(rows, months):
             "blind_share": (cash / denom * 100) if denom else 0}
 
 
-def report(rows, window=None):
+def report(rows, stats=None, window=None):
     months = sorted({r["month"] for r in rows})
     if window:
         months = months[-window:]
@@ -196,6 +204,7 @@ def report(rows, window=None):
         "window": {"from": months[0] if months else None,
                    "to": months[-1] if months else None,
                    "months": len(months), "transactions": len(rows)},
+        "parse": stats or {},
         "monthly": spine,
         "movement": category_movement(rows, months),
         "recurring": recurring(rows),
@@ -206,8 +215,16 @@ def report(rows, window=None):
 
 def render(rep):
     w = rep["window"]
+    ps = rep.get("parse") or {}
     L = []
     L.append(f"Window: {w['from']} to {w['to']}  ({w['months']} months, {w['transactions']} transactions)")
+    if ps.get("skipped"):
+        L.append(f"!! {ps['skipped']} of {ps['seen']} rows could not be parsed and are NOT in these totals.")
+        for r in ps.get("reasons", []):
+            L.append(f"     {r}")
+        L.append("   Fix the source rows before trusting any figure below.")
+    if w["months"] < 2:
+        L.append("   Single month: no trend or movement analysis possible.")
     L.append("")
     L.append("MONTHLY")
     L.append(f"  {'month':<9} {'income':>13} {'spend':>13} {'saved':>13} {'rate':>7}")
@@ -255,11 +272,11 @@ def main():
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--months", type=int, default=None)
     a = ap.parse_args()
-    rows = load(a.csv)
+    rows, stats = load(a.csv)
     if not rows:
         print("No parseable transactions.", file=sys.stderr)
         return 1
-    rep = report(rows, a.months)
+    rep = report(rows, stats, a.months)
     print(json.dumps(rep, indent=2, default=str) if a.json else render(rep))
     return 0
 
