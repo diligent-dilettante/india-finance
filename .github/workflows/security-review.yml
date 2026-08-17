@@ -1,0 +1,26 @@
+name: Security Review
+
+# These skills parse untrusted user files: bank statements, audited PDFs, Tally
+# exports. A crafted document reaching a parser is the real attack surface here,
+# which is why this repo gets the review and the markdown-only ones do not.
+
+permissions:
+  pull-requests: write
+  contents: read
+
+on:
+  pull_request:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 2
+
+      - uses: anthropics/claude-code-security-review@main
+        with:
+          comment-pr: true
+          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
